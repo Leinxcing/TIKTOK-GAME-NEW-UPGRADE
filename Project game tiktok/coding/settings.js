@@ -1,5 +1,40 @@
-const GIRLS_SCALE = 1;
-const BOYS_SCALE = 1.8;
+let GIRLS_SCALE = 1;
+let BOYS_SCALE = 1.8;
+
+function saveImageToStorage(key,file,callback){
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        const base64 = e.target.result;
+
+        localStorage.setItem(
+            key,
+            base64
+        );
+
+        callback(base64);
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+function updatePreview(id,image){
+
+    const preview =
+    document.getElementById(id);
+
+    if(!preview) return;
+
+    preview.src = image;
+
+    preview.style.display = "block";
+
+}
+
 // =========================
 // PANEL TOGGLE
 // =========================
@@ -150,17 +185,26 @@ boysY.addEventListener("input",()=>{
 // UPLOAD HELPERS
 // =========================
 
-function uploadImage(input,callback){
+function uploadImage(input,key,callback){
 
     input.addEventListener("change",(e)=>{
 
-        const file =
-        e.target.files[0];
+        const file = e.target.files[0];
 
         if(!file) return;
 
-        callback(
-            URL.createObjectURL(file)
+        saveImageToStorage(
+
+            key,
+
+            file,
+
+            (base64)=>{
+
+                callback(base64);
+
+            }
+
         );
 
     });
@@ -172,75 +216,80 @@ function uploadImage(input,callback){
 // =========================
 
 uploadImage(
-
-document.getElementById(
-"girlsIdleUpload"
-),
-
+document.getElementById("girlsIdleUpload"),
+"girlsIdle",
 (url)=>{
 
     girlsNormalImg = url;
 
     girlsCharacter.src = url;
 
-}
+    updatePreview(
+        "girlsIdlePreview",
+        url
+    );
 
+}
 );
 
 uploadImage(
-
-document.getElementById(
-"girlsPunchUpload"
-),
-
+document.getElementById("girlsPunchUpload"),
+"girlsPunch",
 (url)=>{
 
     girlsPunchImg = url;
 
-}
+    updatePreview(
+        "girlsPunchPreview",
+        url
+    );
 
+}
 );
 
 uploadImage(
-
-document.getElementById(
-"girlsSuperUpload"
-),
-
+document.getElementById("girlsSuperUpload"),
+"girlsSuper",
 (url)=>{
 
     superGirlsImg = url;
 
-}
+    updatePreview(
+        "girlsSuperPreview",
+        url
+    );
 
+}
 );
 
 uploadImage(
-
-document.getElementById(
-"girlsWinnerUpload"
-),
-
+document.getElementById("girlsWinnerUpload"),
+"girlsWinner",
 (url)=>{
 
     girlsWinnerImg = url;
 
-}
+    updatePreview(
+        "girlsWinnerPreview",
+        url
+    );
 
+}
 );
 
 uploadImage(
-
-document.getElementById(
-"girlsPanicUpload"
-),
-
+document.getElementById("girlsPanicUpload"),
+"girlsPanic",
 (url)=>{
 
     girlsPanicImg = url;
 
-}
+    updatePreview(
+        "girlsPanicPreview",
+        url
+    );
 
+}
 );
 
 // =========================
@@ -248,75 +297,80 @@ document.getElementById(
 // =========================
 
 uploadImage(
-
-document.getElementById(
-"boysIdleUpload"
-),
-
+document.getElementById("boysIdleUpload"),
+"boysIdle",
 (url)=>{
 
     boysNormalImg = url;
 
     boysCharacter.src = url;
 
-}
+    updatePreview(
+        "boysIdlePreview",
+        url
+    );
 
+}
 );
 
 uploadImage(
-
-document.getElementById(
-"boysPunchUpload"
-),
-
+document.getElementById("boysPunchUpload"),
+"boysPunch",
 (url)=>{
 
     boysPunchImg = url;
 
-}
+    updatePreview(
+        "boysPunchPreview",
+        url
+    );
 
+}
 );
 
 uploadImage(
-
-document.getElementById(
-"boysSuperUpload"
-),
-
+document.getElementById("boysSuperUpload"),
+"boysSuper",
 (url)=>{
 
     superBoysImg = url;
 
-}
+    updatePreview(
+        "boysSuperPreview",
+        url
+    );
 
+}
 );
 
 uploadImage(
-
-document.getElementById(
-"boysWinnerUpload"
-),
-
+document.getElementById("boysWinnerUpload"),
+"boysWinner",
 (url)=>{
 
     boysWinnerImg = url;
 
-}
+    updatePreview(
+        "boysWinnerPreview",
+        url
+    );
 
+}
 );
 
 uploadImage(
-
-document.getElementById(
-"boysPanicUpload"
-),
-
+document.getElementById("boysPanicUpload"),
+"boysPanic",
 (url)=>{
 
     boysPanicImg = url;
 
-}
+    updatePreview(
+        "boysPanicPreview",
+        url
+    );
 
+}
 );
 
 // =========================
@@ -351,6 +405,123 @@ alert("Settings Saved!");
 // =========================
 
 window.addEventListener("load",()=>{
+
+    // =========================
+// LOAD CHARACTER IMAGES
+// =========================
+
+if(localStorage.getItem("girlsIdle")){
+
+girlsNormalImg =
+localStorage.getItem("girlsIdle");
+updatePreview(
+"girlsIdlePreview",
+girlsNormalImg
+);
+
+girlsCharacter.src =
+girlsNormalImg;
+
+}
+
+if(localStorage.getItem("girlsPunch")){
+
+girlsPunchImg =
+localStorage.getItem("girlsPunch");
+updatePreview(
+"girlsPunchPreview",
+girlsPunchImg
+);
+}
+
+if(localStorage.getItem("girlsSuper")){
+
+superGirlsImg =
+localStorage.getItem("girlsSuper");
+updatePreview(
+"girlsSuperPreview",
+superGirlsImg
+);
+}
+
+if(localStorage.getItem("girlsWinner")){
+
+girlsWinnerImg =
+localStorage.getItem("girlsWinner");
+updatePreview(
+"girlsWinnerPreview",
+girlsWinnerImg
+);
+
+}
+
+if(localStorage.getItem("girlsPanic")){
+
+girlsPanicImg =
+localStorage.getItem("girlsPanic");
+updatePreview(
+"girlsPanicPreview",
+girlsPanicImg
+);
+
+}
+
+if(localStorage.getItem("boysIdle")){
+
+boysNormalImg =
+localStorage.getItem("boysIdle");
+updatePreview(
+"boysIdlePreview",
+boysNormalImg
+);
+
+boysCharacter.src =
+boysNormalImg;
+
+}
+
+if(localStorage.getItem("boysPunch")){
+
+boysPunchImg =
+localStorage.getItem("boysPunch");
+updatePreview(
+"boysPunchPreview",
+boysPunchImg
+);
+}
+
+if(localStorage.getItem("boysSuper")){
+
+superBoysImg =
+localStorage.getItem("boysSuper");
+updatePreview(
+"boysSuperPreview",
+superBoysImg
+);
+
+}
+
+if(localStorage.getItem("boysWinner")){
+
+boysWinnerImg =
+localStorage.getItem("boysWinner");
+updatePreview(
+"boysWinnerPreview",
+boysWinnerImg
+);
+
+}
+
+if(localStorage.getItem("boysPanic")){
+
+boysPanicImg =
+localStorage.getItem("boysPanic");
+updatePreview(
+"boysPanicPreview",
+boysPanicImg
+);
+
+}
 
 // TEAM NAME
 if(localStorage.getItem("girlsName")){
@@ -418,48 +589,194 @@ boysSideColor.value;
 // SIZE
 if(localStorage.getItem("girlsSize")){
 
-girlsSize.value =
-localStorage.getItem("girlsSize");
+    girlsSize.value =
+    localStorage.getItem("girlsSize");
 
-girlsCharacter.style.width =
-girlsSize.value + "px";
+    girlsCharacter.style.width =
+    (girlsSize.value * GIRLS_SCALE) + "px";
 
 }
 
 if(localStorage.getItem("boysSize")){
 
-boysSize.value =
-localStorage.getItem("boysSize");
+    boysSize.value =
+    localStorage.getItem("boysSize");
 
-boysCharacter.style.width =
-boysSize.value + "px";
-
-}
-
-// POSITION
-if(localStorage.getItem("girlsY")){
-
-girlsY.value =
-localStorage.getItem("girlsY");
-
-document.querySelector(
-".girls .character"
-).style.bottom =
-girlsY.value + "px";
+    boysCharacter.style.width =
+    (boysSize.value * BOYS_SCALE) + "px";
 
 }
 
-if(localStorage.getItem("boysY")){
+});
 
-boysY.value =
-localStorage.getItem("boysY");
+document.getElementById(
+"exportPreset"
+).addEventListener("click",()=>{
 
-document.querySelector(
-".boys .character"
-).style.bottom =
-boysY.value + "px";
+    const preset = {
 
-}
+        girlsName:
+        girlsNameInput.value,
+
+        boysName:
+        boysNameInput.value,
+
+        girlsTitleColor:
+        girlsTitleColor.value,
+
+        boysTitleColor:
+        boysTitleColor.value,
+
+        girlsSideColor:
+        girlsSideColor.value,
+
+        boysSideColor:
+        boysSideColor.value,
+
+        girlsSize:
+        girlsSize.value,
+
+        boysSize:
+        boysSize.value,
+
+        girlsY:
+        girlsY.value,
+
+        boysY:
+        boysY.value
+
+    };
+
+    const blob =
+    new Blob(
+
+        [
+            JSON.stringify(
+                preset,
+                null,
+                2
+            )
+        ],
+
+        {
+            type:
+            "application/json"
+        }
+
+    );
+
+    const link =
+    document.createElement("a");
+
+    link.href =
+    URL.createObjectURL(blob);
+
+    link.download =
+    "battle-preset.json";
+
+    link.click();
+
+});
+
+document.getElementById(
+"importPreset"
+).addEventListener("change",(e)=>{
+
+    const file =
+    e.target.files[0];
+
+    if(!file) return;
+
+    const reader =
+    new FileReader();
+
+    reader.onload =
+    function(event){
+
+        const preset =
+        JSON.parse(
+            event.target.result
+        );
+
+        // TEAM NAME
+
+        girlsNameInput.value =
+        preset.girlsName || "";
+
+        boysNameInput.value =
+        preset.boysName || "";
+
+        girlsTeamName.textContent =
+        girlsNameInput.value;
+
+        boysTeamName.textContent =
+        boysNameInput.value;
+
+        // TITLE COLOR
+
+        girlsTitleColor.value =
+        preset.girlsTitleColor;
+
+        boysTitleColor.value =
+        preset.boysTitleColor;
+
+        girlsTeamName.style.background =
+        preset.girlsTitleColor;
+
+        boysTeamName.style.background =
+        preset.boysTitleColor;
+
+        // TEAM COLOR
+
+        girlsSideColor.value =
+        preset.girlsSideColor;
+
+        boysSideColor.value =
+        preset.boysSideColor;
+
+        girlsSide.style.background =
+        preset.girlsSideColor;
+
+        boysSide.style.background =
+        preset.boysSideColor;
+
+        // SIZE
+
+        girlsSize.value =
+        preset.girlsSize;
+
+        boysSize.value =
+        preset.boysSize;
+
+        girlsCharacter.style.width =
+        (preset.girlsSize * GIRLS_SCALE)
+        + "px";
+
+        boysCharacter.style.width =
+        (preset.boysSize * BOYS_SCALE)
+        + "px";
+
+        // POSITION
+
+        girlsY.value =
+        preset.girlsY;
+
+        boysY.value =
+        preset.boysY;
+
+        document.querySelector(
+        ".girls .character"
+        ).style.bottom =
+        preset.girlsY + "px";
+
+        document.querySelector(
+        ".boys .character"
+        ).style.bottom =
+        preset.boysY + "px";
+
+    };
+
+    reader.readAsText(file);
 
 });
 
@@ -471,8 +788,88 @@ document.getElementById(
 "resetSettings"
 ).addEventListener("click",()=>{
 
-localStorage.clear();
+localStorage.removeItem("girlsIdle");
+localStorage.removeItem("girlsPunch");
+localStorage.removeItem("girlsSuper");
+localStorage.removeItem("girlsWinner");
+localStorage.removeItem("girlsPanic");
+
+localStorage.removeItem("boysIdle");
+localStorage.removeItem("boysPunch");
+localStorage.removeItem("boysSuper");
+localStorage.removeItem("boysWinner");
+localStorage.removeItem("boysPanic");
+
+localStorage.removeItem("girlsName");
+localStorage.removeItem("boysName");
+
+localStorage.removeItem("girlsTitleColor");
+localStorage.removeItem("boysTitleColor");
+
+localStorage.removeItem("girlsSideColor");
+localStorage.removeItem("boysSideColor");
+
+localStorage.removeItem("girlsSize");
+localStorage.removeItem("boysSize");
+
+localStorage.removeItem("girlsY");
+localStorage.removeItem("boysY");
 
 location.reload();
+
+});
+
+// =========================
+// TAB NAVIGATION
+// =========================
+
+const tabButtons =
+document.querySelectorAll(".tab-btn");
+
+const tabContents =
+document.querySelectorAll(".tab-content");
+
+tabButtons.forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+        tabButtons.forEach(b=>{
+
+            b.classList.remove("active");
+
+        });
+
+        tabContents.forEach(tab=>{
+
+            tab.classList.remove("active");
+
+        });
+
+        btn.classList.add("active");
+
+        document
+        .getElementById(
+            btn.dataset.tab
+        )
+        .classList
+        .add("active");
+
+    });
+
+});
+
+// =========================
+// EFFECT TOGGLES
+// =========================
+
+const effectGlow =
+document.getElementById("effectGlow");
+
+effectGlow.addEventListener("change",()=>{
+
+document.body.classList.toggle(
+"disable-glow",
+!effectGlow.checked
+);
 
 });
