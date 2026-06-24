@@ -1,0 +1,544 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+}
+
+.game-container{
+    display:flex;
+    width:100%;
+    height:100vh;
+    position:relative;
+}
+
+.team{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:all .3s ease;
+    position:relative;
+}
+
+.girls{
+    width:50%;
+    background:linear-gradient(135deg,#ff3dcf,#ff8fe3);
+}
+
+.boys{
+    width:50%;
+    background:linear-gradient(135deg,#29b6ff,#7ad7ff);
+}
+
+.center-line{
+    position:absolute;
+    left:50%;
+    top:0;
+    transform:translateX(-50%);
+    width:6px;
+    height:100%;
+    background:white;
+    z-index:10;
+    transition:left .2s ease;
+    box-shadow:0 0 15px rgba(255,255,255,.8);
+}
+
+.center-line span{
+    position:absolute;
+    top:40px;
+    left:50%;
+    transform:translateX(-50%);
+    color:white;
+    font-size:40px;
+    font-weight:bold;
+}
+
+.score-box{
+    position:absolute;
+    top:30px;
+    display:flex;
+    align-items:center;
+    font-weight:bold;
+    overflow:hidden;
+}
+
+.left{
+    left:20px;
+}
+
+.right{
+    right:20px;
+}
+
+.score-box span{
+    background:black;
+    color:white;
+    padding:15px 25px;
+    font-size:30px;
+}
+
+.score-box div{
+    padding:15px 25px;
+    color:white;
+    font-size:24px;
+}
+
+.girls .score-box div{
+    background:#b700ff;
+}
+
+.boys .score-box div{
+    background:#00b7ff;
+}
+
+.character{
+    font-size:180px;
+    user-select:none;
+    transition:.2s;
+}
+
+/*
+.character:active{
+    transform:scale(1.1);
+}
+*/
+
+.click-counter{
+    position:absolute;
+    bottom:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+
+    padding:12px 20px;
+
+    border:2px solid white;
+    border-radius:15px;
+
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.character{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.team:hover{
+    filter:brightness(1.08);
+}
+
+@media(max-width:768px){
+
+    .character{
+        font-size:120px;
+    }
+
+    .score-box span,
+    .score-box div{
+        font-size:18px;
+        padding:10px 15px;
+    }
+
+    .center-line span{
+        font-size:28px;
+    }
+}
+
+.winner-popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.popup-content{
+    background:transparent;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.popup-content h1{
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+.popup-content button{
+    padding:15px 30px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.popup-content{
+    background:transparent;
+    padding:0;
+    border-radius:0;
+    text-align:center;
+    animation: zoomIn .5s ease;
+    box-shadow:none;
+}
+
+.popup-content h1{
+    font-size:60px;
+    font-weight:bold;
+}
+
+@keyframes zoomIn{
+    from{
+        transform:scale(.5);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes pushLeft{
+    0%{
+        transform:translateX(0);
+    }
+    50%{
+        transform:translateX(-30px);
+    }
+    100%{
+        transform:translateX(0);
+    }
+}
+
+.push-boys{
+    animation:pushLeft .15s ease;
+}
+
+@keyframes pushedBack {
+
+    0%{
+        transform:translateX(0);
+    }
+
+    50%{
+        transform:translateX(20px);
+    }
+
+    100%{
+        transform:translateX(0);
+    }
+}
+
+.pushed-boys{
+    animation:pushedBack .3s ease;
+}
+
+.character img{
+    max-width:none;
+    user-select:none;
+    pointer-events:none;
+    transition:all .15s ease;
+}
+
+/* BOYS */
+#boysCharacter{
+    width:900px;
+}
+
+/* GIRLS */
+#girlsCharacter{
+    width:480px;
+}
+
+
+@keyframes pushRight{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    50%{
+        transform:translateX(30px);
+    }
+
+    100%{
+        transform:translateX(0);
+    }
+}
+
+.push-girls{
+    animation:pushRight .15s ease;
+}
+
+/* =========================
+   POSISI KARAKTER DEKAT GARIS
+========================= */
+
+.girls .character{
+    position:absolute;
+
+    right:0;
+
+    transform:translateX(13%);
+
+    bottom:105px;
+
+    z-index:5;
+}
+
+.boys .character{
+    position:absolute;
+
+    left:0;
+
+    transform:translateX(-28%);
+
+    bottom:100px;
+
+    z-index:5;
+}
+
+/* =========================
+   AREA KLIK TETAP
+========================= */
+
+#girlsZone{
+    position:absolute;
+    top:0;
+    left:0;
+    width:50%;
+    height:100%;
+    z-index:1;
+    background:transparent;
+}
+
+#boysZone{
+    position:absolute;
+    top:0;
+    right:0;
+    width:50%;
+    height:100%;
+    z-index:1;
+    background:transparent;
+}
+
+/* UI tetap di atas */
+.character,
+.score-box,
+.click-counter,
+.center-line{
+    z-index:10;
+}
+
+/* Karakter tidak bisa diklik */
+.character,
+.character img{
+    pointer-events:none;
+}
+
+/* =========================
+   LIVE IMAGE
+========================= */
+
+.live-badge{
+    position:absolute;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:999;
+    pointer-events:none;
+
+    animation:livePulse 1.5s infinite ease-in-out;
+}
+
+.live-badge img{
+    width:125px;
+    height:auto;
+    display:block;
+
+    animation:
+        glowLive 1.5s infinite alternate,
+        liveScale 1.5s infinite ease-in-out;
+
+    filter:
+        drop-shadow(0 0 8px rgba(255,0,0,.8))
+        drop-shadow(0 0 20px rgba(255,0,0,.7))
+        drop-shadow(0 0 40px rgba(255,0,0,.6));
+}
+
+@keyframes glowLive{
+
+    0%{
+        filter:
+            drop-shadow(0 0 8px rgba(255,0,0,.8))
+            drop-shadow(0 0 20px rgba(255,0,0,.7))
+            drop-shadow(0 0 40px rgba(255,0,0,.6));
+    }
+
+    100%{
+        filter:
+            drop-shadow(0 0 15px rgba(255,0,0,1))
+            drop-shadow(0 0 35px rgba(255,0,0,.95))
+            drop-shadow(0 0 70px rgba(255,0,0,.85));
+    }
+}
+
+@keyframes liveScale{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.06);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+@keyframes livePulse{
+
+    0%{
+        transform:translateX(-50%);
+    }
+
+    50%{
+        transform:translateX(-50%);
+    }
+
+    100%{
+        transform:translateX(-50%);
+    }
+}
+
+/* =========================
+   CHARACTER SWAY EFFECT
+========================= */
+
+#girlsCharacter,
+#boysCharacter{
+    animation:characterSway 1.8s infinite ease-in-out;
+    transform-origin:center bottom;
+}
+
+@keyframes characterSway{
+
+    0%{
+        transform:
+            rotate(-2deg)
+            translateY(0);
+    }
+
+    25%{
+        transform:
+            rotate(2deg)
+            translateY(-3px);
+    }
+
+    50%{
+        transform:
+            rotate(-2deg)
+            translateY(0);
+    }
+
+    75%{
+        transform:
+            rotate(2deg)
+            translateY(-3px);
+    }
+
+    100%{
+        transform:
+            rotate(-2deg)
+            translateY(0);
+    }
+}
+
+/* =========================
+   BOYS ATTACK GLOW
+========================= */
+
+.boys-glow{
+
+    
+
+     filter:
+        brightness(1.15)
+        saturate(1.2)
+        drop-shadow(0 0 8px rgb(38, 0, 255));
+}
+
+/* =========================
+   GIRLS ATTACK GLOW
+========================= */
+
+.girls-glow{
+
+    filter:
+        brightness(1.15)
+        saturate(1.3)
+        drop-shadow(0 0 8px rgb(255, 0, 0))
+        drop-shadow(0 0 9px rgb(236, 5, 5));
+
+}
+
+.mushroom-icon{
+    width:60px;
+    height:auto;
+
+    margin-right:6px;
+
+    vertical-align:middle;
+
+    filter:
+        drop-shadow(0 0 2px rgba(255,255,255,.4));
+}
+
+
+
+@keyframes winnerZoom{
+
+    from{
+        transform:scale(.5);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+#winnerImage{
+    width:450px;
+    max-width:80vw;
+    height:auto;
+
+    filter:
+        drop-shadow(0 0 10px rgba(255,255,255,.4))
+        drop-shadow(0 0 30px rgba(255,255,255,.2));
+
+    animation:winnerZoom .5s ease;
+}
+
+#boysCharacter,
+#girlsCharacter{
+    transition:
+        opacity .18s ease,
+        transform .18s ease;
+}

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boys vs Girls Battle</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+
+<div class="game-container">
+
+    <!-- AREA KLIK TETAP -->
+    <div id="girlsZone"></div>
+    <div id="boysZone"></div>
+
+    <!-- GIRLS -->
+    <div class="team girls" id="girlsSide">
+
+    <div class="score-box left">
+    <span id="girlsScore">0</span>
+    <div id="girlsTeamName">TEAM GIRLS</div>
+    </div>
+
+    <div class="character">
+        <img src="girls.png" id="girlsCharacter" alt="Girls">
+    </div>
+
+    <div class="click-counter">
+        <img src="jamur.png" class="mushroom-icon">
+        <span id="girlsClicks">0</span>
+    </div>
+
+</div>
+
+
+
+
+    <!-- CENTER -->
+    <div class="center-line" id="battleLine"></div>
+
+    <div class="live-badge">
+    <img src="live.png" alt="LIVE">
+    </div>
+
+    <!-- BOYS -->
+    <div class="team boys" id="boysSide">
+        <div class="score-box right">
+    <div id="boysTeamName">TEAM BOYS</div>
+    <span id="boysScore">0</span>
+    </div>
+
+            
+        <div class="character">
+             <img src="boys1.png" id="boysCharacter" alt="Boys">
+        </div>
+
+        <div class="click-counter">
+    <img src="jamur.png" class="mushroom-icon">
+    <span id="boysClicks">0</span>
+</div>
+
+</div>
+
+</div> <!-- game-container -->
+<div id="winnerPopup" class="winner-popup">
+
+    <div class="popup-content">
+
+        <img id="winnerImage" src="" alt="Winner">
+
+    </div>
+
+</div>
+
+<!-- SETTINGS BUTTON -->
+<div id="settingsBtn">
+⚙
+</div>
+
+<!-- SETTINGS PANEL -->
+<div id="settingsPanel" class="hide">
+
+    <div class="settings-header">
+        CONTROL PANEL
+    </div>
+
+    <!-- TEAM NAME -->
+    <div class="settings-section">
+
+        <h3>TEAM NAME</h3>
+
+        <label>LEFT TEAM</label>
+        <input type="text"
+               id="girlsNameInput"
+               value="TEAM GIRLS">
+
+        <label>RIGHT TEAM</label>
+        <input type="text"
+               id="boysNameInput"
+               value="TEAM BOYS">
+
+    </div>
+
+    <!-- TITLE COLORS -->
+    <div class="settings-section">
+
+        <h3>TITLE COLORS</h3>
+
+        <label>Girls</label>
+        <input type="color"
+               id="girlsTitleColor"
+               value="#b700ff">
+
+        <label>Boys</label>
+        <input type="color"
+               id="boysTitleColor"
+               value="#00b7ff">
+
+    </div>
+
+    <!-- TEAM COLORS -->
+    <div class="settings-section">
+
+        <h3>TEAM COLORS</h3>
+
+        <label>Girls Side</label>
+        <input type="color"
+               id="girlsSideColor"
+               value="#ff3dcf">
+
+        <label>Boys Side</label>
+        <input type="color"
+               id="boysSideColor"
+               value="#29b6ff">
+
+    </div>
+
+    <!-- CHARACTER SIZE -->
+    <div class="settings-section">
+
+        <h3>CHARACTER SIZE</h3>
+
+        <label>Girls</label>
+        <input type="range"
+               id="girlsSize"
+               min="200"
+               max="1200"
+               value="480">
+
+        <label>Boys</label>
+        <input type="range"
+               id="boysSize"
+               min="200"
+               max="1200"
+               value="900">
+
+    </div>
+
+    <!-- CHARACTER POSITION -->
+    <div class="settings-section">
+
+        <h3>VERTICAL POSITION</h3>
+
+        <label>Girls</label>
+        <input type="range"
+               id="girlsY"
+               min="0"
+               max="300"
+               value="105">
+
+        <label>Boys</label>
+        <input type="range"
+               id="boysY"
+               min="0"
+               max="300"
+               value="100">
+
+    </div>
+
+    <!-- GIRLS CHARACTER -->
+    <div class="settings-section">
+
+        <h3>LEFT CHARACTER (GIRLS)</h3>
+
+        <label>IDLE</label>
+        <input type="file" id="girlsIdleUpload">
+
+        <img id="girlsIdlePreview"
+        class="preview-image">
+
+        <label>PUNCH</label>
+        <input type="file" id="girlsPunchUpload">
+
+        <img id="girlsPunchPreview"
+             class="preview-image">
+
+        <label>SUPER</label>
+        <input type="file" id="girlsSuperUpload">
+
+        <img id="girlsSuperPreview"
+             class="preview-image">
+
+        <label>WINNER</label>
+        <input type="file" id="girlsWinnerUpload">
+
+        <img id="girlsWinnerPreview"
+             class="preview-image">
+
+        <label>PANIC</label>
+        <input type="file" id="girlsPanicUpload">
+
+        <img id="girlsPanicPreview"
+             class="preview-image">
+
+    </div>
+
+    <!-- BOYS CHARACTER -->
+    <div class="settings-section">
+
+        <h3>RIGHT CHARACTER (BOYS)</h3>
+
+        <label>IDLE</label>
+        <input type="file" id="boysIdleUpload">
+
+        <img id="boysIdlePreview"
+             class="preview-image">
+
+        <label>PUNCH</label>
+        <input type="file" id="boysPunchUpload">
+
+        <img id="boysPunchPreview"
+             class="preview-image">
+
+        <label>SUPER</label>
+        <input type="file" id="boysSuperUpload">
+
+        <img id="boysSuperPreview"
+             class="preview-image">
+
+        <label>WINNER</label>
+        <input type="file" id="boysWinnerUpload">
+
+        <img id="boysWinnerPreview"
+             class="preview-image">
+
+        <label>PANIC</label>
+        <input type="file" id="boysPanicUpload">
+
+        <img id="boysPanicPreview"
+             class="preview-image">
+
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="settings-section">
+
+    <h3>SYSTEM</h3>
+
+    <button id="saveSettings">
+            SAVE SETTINGS
+        </button>
+
+        <button id="resetSettings">
+            RESET ALL
+        </button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+<script src="settings.js"></script>
+</body>
+</html>

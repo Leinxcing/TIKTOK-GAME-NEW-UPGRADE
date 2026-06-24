@@ -1,0 +1,501 @@
+/* =========================
+   SETTINGS BUTTON
+========================= */
+
+#settingsBtn{
+
+    position:fixed;
+
+    right:25px;
+    bottom:25px;
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #00e5ff,
+        #0066ff
+    );
+
+    color:white;
+
+    font-size:34px;
+    font-weight:bold;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    z-index:99999;
+
+    box-shadow:
+        0 0 15px rgba(0,229,255,.8),
+        0 0 35px rgba(0,229,255,.5);
+
+    transition:.25s ease;
+}
+
+#settingsBtn:hover{
+
+    transform:scale(1.08);
+
+    box-shadow:
+        0 0 25px rgba(0,229,255,1),
+        0 0 50px rgba(0,229,255,.8);
+
+}
+
+/* =========================
+   SETTINGS PANEL
+========================= */
+
+#settingsPanel{
+
+    position:fixed;
+
+    top:15px;
+    right:15px;
+
+    width:420px;
+    height:95vh;
+
+    overflow-y:auto;
+
+    background:
+        linear-gradient(
+            180deg,
+            #07111c,
+            #0d1c2c
+        );
+
+    border-radius:20px;
+
+    padding:20px;
+
+    z-index:99998;
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 0 30px rgba(0,255,255,.15);
+
+    transition:.35s ease;
+}
+
+/* HIDE PANEL */
+
+#settingsPanel.hide{
+
+    transform:translateX(470px);
+
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+#settingsPanel::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+#settingsPanel::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+#settingsPanel::-webkit-scrollbar-thumb{
+
+    background:#00c8ff;
+
+    border-radius:20px;
+
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.settings-header{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    margin-bottom:20px;
+
+    color:#00e5ff;
+
+    text-shadow:
+        0 0 10px rgba(0,229,255,.8);
+
+}
+
+/* =========================
+   SECTION CARD
+========================= */
+
+.settings-section{
+
+    background:
+        rgba(255,255,255,.03);
+
+    border:1px solid
+        rgba(255,255,255,.08);
+
+    border-radius:15px;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+}
+
+.settings-section h3{
+
+    color:#00e5ff;
+
+    font-size:18px;
+
+    margin-bottom:12px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+}
+
+.settings-section label{
+
+    display:block;
+
+    margin-top:10px;
+    margin-bottom:6px;
+
+    font-size:14px;
+
+    color:#d8d8d8;
+
+}
+
+/* =========================
+   INPUT TEXT
+========================= */
+
+.settings-section input[type="text"]{
+
+    width:100%;
+
+    height:42px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:10px;
+
+    padding:0 12px;
+
+    background:#152535;
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+/* =========================
+   COLOR PICKER
+========================= */
+
+.settings-section input[type="color"]{
+
+    width:100%;
+    height:45px;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    margin-bottom:10px;
+
+}
+
+/* =========================
+   RANGE SLIDER
+========================= */
+
+.settings-section input[type="range"]{
+
+    width:100%;
+
+    margin-bottom:15px;
+
+    accent-color:#00e5ff;
+
+}
+
+/* =========================
+   FILE INPUT
+========================= */
+
+.settings-section input[type="file"]{
+
+    width:100%;
+
+    margin-bottom:10px;
+
+    color:white;
+
+}
+
+/* =========================
+   PREVIEW IMAGE
+========================= */
+
+.preview-image{
+
+    width:100%;
+
+    max-height:120px;
+
+    object-fit:contain;
+
+    margin-top:8px;
+    margin-bottom:12px;
+
+    border-radius:10px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    display:none;
+
+}
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+#saveSettings{
+
+    width:100%;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:16px;
+    font-weight:bold;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00d9ff,
+            #0066ff
+        );
+
+    margin-bottom:10px;
+
+    box-shadow:
+        0 0 20px rgba(0,217,255,.35);
+
+    transition:.25s ease;
+
+}
+
+#saveSettings:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 30px rgba(0,217,255,.7);
+
+}
+
+/* =========================
+   RESET BUTTON
+========================= */
+
+#resetSettings{
+
+    width:100%;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:16px;
+    font-weight:bold;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff3a6d,
+            #ff0044
+        );
+
+    box-shadow:
+        0 0 20px rgba(255,0,68,.35);
+
+    transition:.25s ease;
+
+}
+
+#resetSettings:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 0 30px rgba(255,0,68,.7);
+
+}
+
+/* =========================
+   FILE INPUT BEAUTY
+========================= */
+
+.settings-section input[type="file"]::file-selector-button{
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:8px 14px;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #00d9ff,
+            #007bff
+        );
+
+    margin-right:10px;
+
+}
+
+/* =========================
+   SECTION HOVER
+========================= */
+
+.settings-section{
+
+    transition:.25s ease;
+
+}
+
+.settings-section:hover{
+
+    border-color:
+        rgba(0,229,255,.35);
+
+    box-shadow:
+        0 0 18px rgba(0,229,255,.08);
+
+}
+
+/* =========================
+   SETTINGS TITLE DIVIDER
+========================= */
+
+.settings-header{
+
+    position:sticky;
+
+    top:0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #07111c,
+            #07111c
+        );
+
+    padding-bottom:15px;
+
+    z-index:10;
+
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    #settingsPanel{
+
+        width:95vw;
+
+        right:10px;
+
+    }
+
+}
+
+/* =========================
+   UPLOAD GRID
+========================= */
+
+.upload-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:10px;
+
+}
+
+/* =========================
+   SMOOTH OPEN CLOSE
+========================= */
+
+#settingsPanel{
+
+    will-change:transform;
+
+}
+
+/* =========================
+   PANEL GLOW
+========================= */
+
+#settingsPanel{
+
+    backdrop-filter:blur(12px);
+
+}
+
