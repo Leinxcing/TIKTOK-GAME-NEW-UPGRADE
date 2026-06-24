@@ -86,7 +86,30 @@
     <div class="settings-header">
         CONTROL PANEL
     </div>
+    <div class="tab-menu">
 
+    <button class="tab-btn active"
+            data-tab="generalTab">
+        GENERAL
+    </button>
+
+    <button class="tab-btn"
+        data-tab="characterTab">
+    CHARACTER
+    </button>
+
+    <button class="tab-btn"
+        data-tab="effectsTab">
+    EFFECTS
+    </button>
+
+    <button class="tab-btn"
+        data-tab="presetTab">
+    PRESET
+    </button>
+
+</div>
+<div id="generalTab" class="tab-content active">
     <!-- TEAM NAME -->
     <div class="settings-section">
 
@@ -179,41 +202,79 @@
                value="100">
 
     </div>
+    </div>
+
+    <div id="characterTab" class="tab-content">
 
     <!-- GIRLS CHARACTER -->
     <div class="settings-section">
 
         <h3>LEFT CHARACTER (GIRLS)</h3>
 
-        <label>IDLE</label>
-        <input type="file" id="girlsIdleUpload">
+        <!-- IDLE -->
+        <div class="upload-card">
 
-        <img id="girlsIdlePreview"
-        class="preview-image">
+            <div class="upload-title">IDLE</div>
 
-        <label>PUNCH</label>
-        <input type="file" id="girlsPunchUpload">
+            <img id="girlsIdlePreview"
+                 class="preview-image">
 
-        <img id="girlsPunchPreview"
-             class="preview-image">
+            <input type="file"
+                   id="girlsIdleUpload">
 
-        <label>SUPER</label>
-        <input type="file" id="girlsSuperUpload">
+        </div>
 
-        <img id="girlsSuperPreview"
-             class="preview-image">
+        <!-- PUNCH -->
+        <div class="upload-card">
 
-        <label>WINNER</label>
-        <input type="file" id="girlsWinnerUpload">
+            <div class="upload-title">PUNCH</div>
 
-        <img id="girlsWinnerPreview"
-             class="preview-image">
+            <img id="girlsPunchPreview"
+                 class="preview-image">
 
-        <label>PANIC</label>
-        <input type="file" id="girlsPanicUpload">
+            <input type="file"
+                   id="girlsPunchUpload">
 
-        <img id="girlsPanicPreview"
-             class="preview-image">
+        </div>
+
+        <!-- SUPER -->
+        <div class="upload-card">
+
+            <div class="upload-title">SUPER</div>
+
+            <img id="girlsSuperPreview"
+                 class="preview-image">
+
+            <input type="file"
+                   id="girlsSuperUpload">
+
+        </div>
+
+        <!-- WINNER -->
+        <div class="upload-card">
+
+            <div class="upload-title">WINNER</div>
+
+            <img id="girlsWinnerPreview"
+                 class="preview-image">
+
+            <input type="file"
+                   id="girlsWinnerUpload">
+
+        </div>
+
+        <!-- PANIC -->
+        <div class="upload-card">
+
+            <div class="upload-title">PANIC</div>
+
+            <img id="girlsPanicPreview"
+                 class="preview-image">
+
+            <input type="file"
+                   id="girlsPanicUpload">
+
+        </div>
 
     </div>
 
@@ -222,53 +283,154 @@
 
         <h3>RIGHT CHARACTER (BOYS)</h3>
 
-        <label>IDLE</label>
-        <input type="file" id="boysIdleUpload">
+        <!-- IDLE -->
+        <div class="upload-card">
 
-        <img id="boysIdlePreview"
-             class="preview-image">
+            <div class="upload-title">IDLE</div>
 
-        <label>PUNCH</label>
-        <input type="file" id="boysPunchUpload">
+            <img id="boysIdlePreview"
+                 class="preview-image">
 
-        <img id="boysPunchPreview"
-             class="preview-image">
+            <input type="file"
+                   id="boysIdleUpload">
 
-        <label>SUPER</label>
-        <input type="file" id="boysSuperUpload">
+        </div>
 
-        <img id="boysSuperPreview"
-             class="preview-image">
+        <!-- PUNCH -->
+        <div class="upload-card">
 
-        <label>WINNER</label>
-        <input type="file" id="boysWinnerUpload">
+            <div class="upload-title">PUNCH</div>
 
-        <img id="boysWinnerPreview"
-             class="preview-image">
+            <img id="boysPunchPreview"
+                 class="preview-image">
 
-        <label>PANIC</label>
-        <input type="file" id="boysPanicUpload">
+            <input type="file"
+                   id="boysPunchUpload">
 
-        <img id="boysPanicPreview"
-             class="preview-image">
+        </div>
+
+        <!-- SUPER -->
+        <div class="upload-card">
+
+            <div class="upload-title">SUPER</div>
+
+            <img id="boysSuperPreview"
+                 class="preview-image">
+
+            <input type="file"
+                   id="boysSuperUpload">
+
+        </div>
+
+        <!-- WINNER -->
+        <div class="upload-card">
+
+            <div class="upload-title">WINNER</div>
+
+            <img id="boysWinnerPreview"
+                 class="preview-image">
+
+            <input type="file"
+                   id="boysWinnerUpload">
+
+        </div>
+
+        <!-- PANIC -->
+        <div class="upload-card">
+
+            <div class="upload-title">PANIC</div>
+
+            <img id="boysPanicPreview"
+                 class="preview-image">
+
+            <input type="file"
+                   id="boysPanicUpload">
+
+        </div>
 
     </div>
 
-    <!-- ACTIONS -->
-    <div class="settings-section">
+</div>
+<div id="effectsTab" class="tab-content">
 
-    <h3>SYSTEM</h3>
+<div class="settings-section">
+
+<h3>EFFECTS</h3>
+
+<label>
+<input type="checkbox"
+id="effectGlow"
+checked>
+ Character Glow
+</label>
+
+<label>
+<input type="checkbox"
+id="effectSway"
+checked>
+ Character Sway
+</label>
+
+<label>
+<input type="checkbox"
+id="effectWinner"
+checked>
+ Winner Zoom
+</label>
+
+<label>
+<input type="checkbox"
+id="effectLive"
+checked>
+ Live Badge Glow
+</label>
+
+<label>
+<input type="checkbox"
+id="effectBoysAura"
+checked>
+ Boys Aura
+</label>
+
+<label>
+<input type="checkbox"
+id="effectGirlsAura"
+checked>
+ Girls Aura
+</label>
+
+</div>
+
+</div>
+<div id="presetTab" class="tab-content">
+    <!-- ACTIONS -->
+<div class="settings-section">
+
+    <h3>PRESET MANAGER</h3>
 
     <button id="saveSettings">
-            SAVE SETTINGS
-        </button>
+        💾 SAVE SETTINGS
+    </button>
 
-        <button id="resetSettings">
-            RESET ALL
-        </button>
+    <button id="exportPreset">
+        📤 EXPORT PRESET
+    </button>
 
-    </div>
+    <label class="import-label">
 
+        📥 IMPORT PRESET
+
+        <input
+        type="file"
+        id="importPreset"
+        accept=".json">
+
+    </label>
+
+    <button id="resetSettings">
+        🗑 RESET ALL
+    </button>
+</div>
 </div>
 
 <script src="script.js"></script>
